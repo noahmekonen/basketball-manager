@@ -1,12 +1,14 @@
 
      public class Player implements Playable {
       private String name;
+      private String position;
       private int points;
       private int assists;
       private int rebounds;
    
-      public Player(String name, int points, int assists, int rebounds) {
+      public Player(String name, String position, int points, int assists, int rebounds) {
          this.name = name;
+         this.position = position;
          this.points = points;
          this.assists = assists;
          this.rebounds = rebounds;
@@ -15,6 +17,11 @@
       public String getName() {
          return name;
       }
+
+      public String getPosition() {
+         return position;
+      }
+      
       public int getPoints() {
          return points;
       }
