@@ -1,7 +1,7 @@
 import java.util.*;
 public class summerBasketball {
    public static void main(String[] args) {
-      Team warriors = new Team(" Warriors");
+      Team warriors = new Team("Warriors");
       Player steph = new Player("Steph Curry", "PG", 30, 6, 5);
       Player jimmy = new Player("Jimmy Butler", "SG", 22, 5, 7);
       Player draymond = new Player("Draymond Green", "SF", 10, 10, 9);
@@ -107,6 +107,7 @@ public class summerBasketball {
 
      boolean running = true;
      while (running) {
+        System.out.println();
         System.out.println("    Basketball League Manager   ");
         System.out.println("1. View Teams");
         System.out.println("2. Add Team");
@@ -121,24 +122,48 @@ public class summerBasketball {
       
         System.out.println("Choose an option (list the corresponding number): ");
         int choice = input.nextInt();
+        input.nextLine();
 
         switch (choice) {
            case 1:
+            System.out.println();
+            System.out.println("Teams in the league: ");
             for (Team tm : nba.getTeams()) {
                System.out.println(tm.getTeamName());
             }
             break;
             case 2:
+               System.out.println();
                System.out.print("Enter team name: ");
-               input.nextLine();
-               break;
-            case 3:
-               for (Team tm : nba.getTeams()) {
-                  System.out.println(tm.getTeamName() + " Roster: ");
-                  tm.getPlayers();
+               String teamName = input.nextLine();
+               Team newTeam = new Team(teamName);
+               if (nba.findTeam(teamName) != null) {
+                  System.out.println("Team already exists.");
                   break;
                }
+               System.out.println();
+               System.out.println("Enter 5 players for the team: ");
+               System.out.println();
+               for (int i = 0; i < 5; i++) {
+                  System.out.println("Enter player " + (i + 1) + " name: ");
+                  String playerName = input.nextLine();
+                  System.out.println("Enter player " + (i + 1) + " position: ");
+                  String position = input.nextLine();
+                  Player newPlayer = new Player(playerName, position, 0, 0, 0);
+                  newTeam.addPlayer(newPlayer);
+                  System.out.println();
+               }
+               nba.addTeam(newTeam);
+               break;
+            case 3:
+               System.out.println();
+               for (Team tm : nba.getTeams()) {
+                  System.out.println(tm.getTeamName() + " Roster: ");
+                  tm.printRoster();
+               }
+               break;
             case 4:
+               System.out.println();
                System.out.print("Enter the team name to add player(s) on: ");
                String teams = input.nextLine();
                Team nbaTeam = nba.findTeam(teams);
@@ -154,32 +179,58 @@ public class summerBasketball {
                nbaTeam.addPlayer(newPlayer);
                break;
             case 5:
+               System.out.println();
                System.out.print("Enter the team name to remove player(s) from: ");
-               String teamName = input.nextLine();
-               Team team = nba.findTeam(teamName);
+               String teamPlayer = input.nextLine();
+               Team team = nba.findTeam(teamPlayer);
+               if (team == null) {
+                  System.out.println("Team not found.");
+                  break;
+               }
                System.out.print("Enter the player name that you want to remove: ");
                String removePlayer = input.nextLine();
                team.removePlayer(removePlayer);
                break;
             case 6:
+               System.out.println();
                System.out.print("Enter the team name to trade player(s) from: ");
                String fromTeamName = input.nextLine();
                Team fromTeam = nba.findTeam(fromTeamName);
+               if (fromTeam == null) {
+                  System.out.println("Team not found.");
+                  break;
+               }
                System.out.print("Enter the player name that you want to trade: ");
                String tradePlayer = input.nextLine();
                Player playerToTrade = fromTeam.findPlayer(tradePlayer);
+              
                System.out.print("Enter the team name to trade player(s) to: ");
                String toTeamName = input.nextLine();
                Team toTeam = nba.findTeam(toTeamName);
+               if (toTeam == null) {
+                  System.out.println("Team not found.");
+                  break;
+               }
                fromTeam.tradePlayer(playerToTrade, toTeam);
                break;
             case 7:
+               System.out.println();
                System.out.print("Enter the first team name to play a game: ");
                String firstTeamName = input.nextLine();
                Team firstTeam = nba.findTeam(firstTeamName);
+               System.out.println();
+               if (firstTeam == null) {
+                  System.out.println("Team not found.");
+                  break;
+               }
                System.out.print("Enter the second team name to play a game: ");
                String secondTeamName = input.nextLine();
                Team secondTeam = nba.findTeam(secondTeamName);
+               System.out.println();
+               if (secondTeam == null) {
+                  System.out.println("Team not found.");
+                  break;
+               }
                Game game = new Game(firstTeam, secondTeam);
                game.playGame();
                game.printScore();
@@ -187,12 +238,23 @@ public class summerBasketball {
                System.out.println("The winner is: " + gameWinner.getTeamName());
                break;
            case 8:
+              System.out.println();
+              System.out.println("League standings...");
               nba.printStandings();
               break;
            case 9:
+            System.out.println();
+            System.out.println("Exiting the program...");
               running = false;
               break;
-         } 
+         }
+         System.out.println(); 
+         if (running) {
+            System.out.println();
+            System.out.println("Press Enter to continue...");
+            input.nextLine();
+            System.out.println();
+         }
 
       } 
       input.close();
