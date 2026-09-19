@@ -23,15 +23,42 @@ public class Game {
     }
 
     public void playGame() {
-        int randHomeScore = (int) (Math.random() * 100) + 60;
-        int randAwayScore = (int) (Math.random() * 100) + 60;
-        homeScore = randHomeScore;
-        awayScore = randAwayScore;
+        homeScore = 0;
+        awayScore = 0;
+        for (Player p: homeTeam.getPlayers()) {
+            int gamePoints = (int) (Math.random() * 31);
+
+            p.addPoints(gamePoints);
+            homeScore += gamePoints;
+        }
+        for (Player p: awayTeam.getPlayers()) {
+            int gamePoints = (int) (Math.random() * 31);
+
+            p.addPoints(gamePoints);
+            awayScore += gamePoints;
+        }
+
         while (homeScore == awayScore) {
-            int overtimeHomeScore = (int) (Math.random() * 20) + 10;
-            int overtimeAwayScore = (int) (Math.random() * 20) + 10;
-            homeScore += overtimeHomeScore;
-            awayScore += overtimeAwayScore;
+            for (Player p: homeTeam.getPlayers()) {
+                int overtimePoints = (int) (Math.random() * 8);
+
+                p.addPoints(overtimePoints);
+                homeScore += overtimePoints;
+            }
+           for (Player p: awayTeam.getPlayers()) {
+                int overtimePoints = (int) (Math.random() * 8);
+
+                p.addPoints(overtimePoints);
+                awayScore += overtimePoints;
+           }
+        }
+
+        if (homeScore > awayScore) {
+            homeTeam.addWin();
+            awayTeam.addLoss();
+        } else {
+            homeTeam.addLoss();
+            awayTeam.addWin();
         }
     }
 

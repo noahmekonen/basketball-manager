@@ -2,9 +2,9 @@ import java.util.*;
 public class summerBasketball {
    public static void main(String[] args) {
       Team warriors = new Team("Warriors");
-      Player steph = new Player("Steph Curry", "PG", 30, 6, 5);
-      Player jimmy = new Player("Jimmy Butler", "SG", 22, 5, 7);
-      Player draymond = new Player("Draymond Green", "SF", 10, 10, 9);
+      Player steph = new Player("Steph Curry", "PG");
+      Player jimmy = new Player("Jimmy Butler", "SG");
+      Player draymond = new Player("Draymond Green", "SF");
       Coach kerr = new Coach("Steve Kerr", 12, warriors);
 
       Scanner input = new Scanner(System.in);
@@ -34,7 +34,6 @@ public class summerBasketball {
       best.addPoints(10);
       warriors.getPlayers().get(1).addPoints(10);
       steph.addPoints(5);
-      jimmy.removeRebounds(3);
       draymond.addAssists(7);
       
       System.out.println("After the stats update: ");
@@ -63,9 +62,9 @@ public class summerBasketball {
 
       
       Team lakers = new Team("Lakers");
-      Player luka = new Player("Luka Doncic", "PG",25, 8, 9);
-      Player deandre = new Player("Deandre Ayton","C", 11, 3, 15);
-      Player austin = new Player("Austin Reaves", "SG", 22, 4, 6);
+      Player luka = new Player("Luka Doncic", "PG");
+      Player deandre = new Player("Deandre Ayton","C");
+      Player austin = new Player("Austin Reaves", "SG");
       Coach jj = new Coach("JJ Redick", 2, lakers);
       
       lakers.addPlayer(luka);
@@ -77,8 +76,7 @@ public class summerBasketball {
       Player top = lakers.getHighestScorer();
       System.out.println("Highest Scorer: ");
       top.printInfo();
-      
-      System.out.printf("Average points: %.2f%n", lakers.getAveragePoints());
+
 
       warriors.tradePlayer(steph, lakers);
       System.out.println("After the trade: ");
@@ -147,9 +145,17 @@ public class summerBasketball {
                for (int i = 0; i < 5; i++) {
                   System.out.println("Enter player " + (i + 1) + " name: ");
                   String playerName = input.nextLine();
-                  System.out.println("Enter player " + (i + 1) + " position: ");
+                  System.out.println();
+                  System.out.println("Choose a position: ");
+                  System.out.println("PG - Point Guard");
+                  System.out.println("SG - Shooting Guard");
+                  System.out.println("SF - Small Forward");
+                  System.out.println("PF - Power Forward");
+                  System.out.println("C - Center");
+                  System.out.println();
+                  System.out.print("Position: ");
                   String position = input.nextLine();
-                  Player newPlayer = new Player(playerName, position, 0, 0, 0);
+                  Player newPlayer = new Player(playerName, position);
                   newTeam.addPlayer(newPlayer);
                   System.out.println();
                }
@@ -175,7 +181,7 @@ public class summerBasketball {
                String player = input.nextLine();
                System.out.println("Enter the player position: ");
                String position = input.nextLine();
-               Player newPlayer = new Player(player, position, 0, 0, 0);
+               Player newPlayer = new Player(player, position);
                nbaTeam.addPlayer(newPlayer);
                break;
             case 5:

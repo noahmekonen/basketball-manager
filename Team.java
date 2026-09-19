@@ -45,9 +45,12 @@
      }
      
      public Player getHighestScorer() {
+        if (players.size() == 0) {
+            return null;
+        }
          Player highestScore = players.get(0);
          for (Player p : players) {
-            if(p.getPoints() > highestScore.getPoints()) {
+            if(p.getPPG() > highestScore.getPPG()) {
                   highestScore = p;
             }
          }  
@@ -71,27 +74,6 @@
          }
        }
      }
-     
-     public int getTotalPoints() {
-         int total = 0;
-         for (Player p : players) {
-            total += p.getPoints();
-         }
-         return total;
-     }
-     
-     public double getAveragePoints() {
-      double average = 0;
-      int count = 0;
-      if (players.size() == 0) {
-         return 0;
-      }
-      for (Player p: players) {
-         average += p.getPoints();
-         count++;
-      }
-      return average/count;
-    }
 
     public void tradePlayer(Player playerTrade, Team otherTeam) {
       if (players.contains(playerTrade)) {

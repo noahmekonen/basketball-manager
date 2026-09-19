@@ -2,16 +2,13 @@
      public class Player implements Playable {
       private String name;
       private String position;
-      private int points;
-      private int assists;
-      private int rebounds;
-   
-      public Player(String name, String position, int points, int assists, int rebounds) {
+      private int totalPoints;
+      private int totalAssists;
+      private int totalRebounds;
+      private int gamesPlayed;
+      public Player(String name, String position) {
          this.name = name;
          this.position = position;
-         this.points = points;
-         this.assists = assists;
-         this.rebounds = rebounds;
       }
       
       public String getName() {
@@ -22,57 +19,44 @@
          return position;
       }
       
-      public int getPoints() {
-         return points;
+      public double getPPG() {
+         if (gamesPlayed == 0) {
+            return 0;
+         }
+         return (double) totalPoints / gamesPlayed;
       }
-      public int getAssists() {
-         return assists;
+      public double getAPG() {
+         if (gamesPlayed == 0) {
+            return 0;
+         }
+         return (double) totalAssists / gamesPlayed;
       }
-      public int getRebounds() {
-         return rebounds;
+      public double getRPG() {
+         if (gamesPlayed == 0) {
+            return 0;
+         }
+         return (double) totalRebounds / gamesPlayed;
       }
       
       public void addPoints(int amount) {
          if (amount > 0) {
-           points += amount;
+           totalPoints += amount;
          }
       }
       public void addAssists(int amount) {
          if (amount > 0) {
-           assists += amount;
+           totalAssists += amount;
          }
       }
       public void addRebounds(int amount) {
          if (amount > 0) {
-           rebounds += amount;
+           totalRebounds += amount;
          }
       }
-      
-      public void removePoints(int amount) {
-         if (amount > points) {
-            System.out.println("The amount is larger than the player's points");
-         } else if (amount > 0) {
-            points -= amount;
-         }
-      }
-      public void removeAssists(int amount) {
-         if (amount > assists) {
-            System.out.println("The amount is larger than the player's assists");
-         } else if (amount > 0) {
-            assists -= amount;
-         }
-     }
-     public void removeRebounds(int amount) {
-        if (amount > rebounds) {
-           System.out.println("The amount is larger than the player's rebounds");
-        } else if (amount > 0) {
-            rebounds -= amount;
-        }
-     }
       
      public void printInfo() {
-        System.out.println(name + " - " + points + " points" + " - " + assists + " assists" + 
-           " - " + rebounds + " rebounds");
+        System.out.println(name + " - " + getPPG() + " PPG" + " - " + getAPG() + " APG" + 
+           " - " + getRPG() + " RPG");
      } 
      
      public void play() {
