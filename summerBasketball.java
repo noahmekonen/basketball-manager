@@ -1,5 +1,5 @@
 import java.util.*;
-public class summerBasketball {
+public class basketballManager {
    public static void main(String[] args) {
       Team warriors = new Team("Warriors");
       Player steph = new Player("Steph Curry", "PG");
