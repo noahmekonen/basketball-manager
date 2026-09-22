@@ -1,11 +1,10 @@
-
-     public class Player implements Playable {
+     // Represents a basketball player and tracks their stats
+     public class Player {
       private String name;
       private String position;
       private int totalPoints;
-      private int totalAssists;
-      private int totalRebounds;
       private int gamesPlayed;
+      
       public Player(String name, String position) {
          this.name = name;
          this.position = position;
@@ -25,45 +24,23 @@
          }
          return (double) totalPoints / gamesPlayed;
       }
-      public double getAPG() {
-         if (gamesPlayed == 0) {
-            return 0;
-         }
-         return (double) totalAssists / gamesPlayed;
+
+      public int getGamesPlayed() {
+         return gamesPlayed;
       }
-      public double getRPG() {
-         if (gamesPlayed == 0) {
-            return 0;
-         }
-         return (double) totalRebounds / gamesPlayed;
-      }
-      
+
       public void addPoints(int amount) {
          if (amount > 0) {
            totalPoints += amount;
          }
       }
-      public void addAssists(int amount) {
-         if (amount > 0) {
-           totalAssists += amount;
-         }
+
+      public void addGamesPlayed() {
+         gamesPlayed++;
       }
-      public void addRebounds(int amount) {
-         if (amount > 0) {
-           totalRebounds += amount;
-         }
-      }
-      
+
      public void printInfo() {
-        System.out.println(name + " - " + getPPG() + " PPG" + " - " + getAPG() + " APG" + 
-           " - " + getRPG() + " RPG");
+        System.out.println(name + " - " + getPPG() + " PPG");
      } 
-     
-     public void play() {
-        System.out.println("Keep it up");
-     }
-         
-   
-   
   }
 

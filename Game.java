@@ -1,3 +1,4 @@
+// Simulates a basketball games between two teams and updates their records.
 public class Game {
     private Team homeTeam;
     private Team awayTeam;
@@ -21,22 +22,33 @@ public class Game {
     public int getAwayScore() {
         return awayScore;
     }
-
+    
+    // Simulates player scoring and determines the winner of the game.
     public void playGame() {
         homeScore = 0;
         awayScore = 0;
+
+        System.out.println(homeTeam.getTeamName() + ": ");
         for (Player p: homeTeam.getPlayers()) {
-            int gamePoints = (int) (Math.random() * 31);
+            int gamePoints = (int) (Math.random() * 75);
 
             p.addPoints(gamePoints);
+            p.addGamesPlayed();
             homeScore += gamePoints;
+            System.out.println(p.getName() + ": " + gamePoints + " points");
         }
+        System.out.println();
+        
+        System.out.println(awayTeam.getTeamName() + ": ");
         for (Player p: awayTeam.getPlayers()) {
-            int gamePoints = (int) (Math.random() * 31);
+            int gamePoints = (int) (Math.random() * 75);
 
             p.addPoints(gamePoints);
+            p.addGamesPlayed();
             awayScore += gamePoints;
+            System.out.println(p.getName() + ": " + gamePoints + " points");
         }
+        System.out.println();
 
         while (homeScore == awayScore) {
             for (Player p: homeTeam.getPlayers()) {
@@ -51,14 +63,6 @@ public class Game {
                 p.addPoints(overtimePoints);
                 awayScore += overtimePoints;
            }
-        }
-
-        if (homeScore > awayScore) {
-            homeTeam.addWin();
-            awayTeam.addLoss();
-        } else {
-            homeTeam.addLoss();
-            awayTeam.addWin();
         }
     }
 

@@ -1,4 +1,5 @@
 import java.util.*;
+// Manages the teams in the league and league standings.
 public class League {
     private ArrayList<Team> teams;
 
@@ -39,7 +40,8 @@ public class League {
         }
         return null;
     }
-
+    
+    // Displays league standings sorted from most wins to least wins.
     public void printStandings() {
         ArrayList<Team> standings = new ArrayList<>(teams);
         Comparator<Team> byWins = new Comparator<>() {

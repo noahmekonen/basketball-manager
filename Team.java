@@ -1,5 +1,6 @@
    import java.util.*;
-   public class Team implements Playable { 
+   // Represents a team and manages its roster and win/loss record.
+   public class Team { 
       private String teamName;
       private ArrayList<Player> players;
       private int wins;
@@ -8,7 +9,7 @@
       public Team(String teamName) {
          this.teamName = teamName;
          this.players = new ArrayList<>();
-     }
+      }
      
      public String getTeamName() {
          return teamName;
@@ -44,19 +45,7 @@
          }
      }
      
-     public Player getHighestScorer() {
-        if (players.size() == 0) {
-            return null;
-        }
-         Player highestScore = players.get(0);
-         for (Player p : players) {
-            if(p.getPPG() > highestScore.getPPG()) {
-                  highestScore = p;
-            }
-         }  
-         return highestScore;
-     }
-     
+     // Finds a team by name, ignoring capitalization
      public Player findPlayer(String name) {
        for (Player p : players) {
           if (p.getName().equalsIgnoreCase(name)) {
@@ -83,9 +72,4 @@
          System.out.println("Player not found.");
       }
     }
-     
-     public void play() {
-      System.out.println("Lets Keep Going");
-     }
-      
-  }
+}
