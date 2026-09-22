@@ -55,4 +55,3 @@ The program continues running until the user chooses to exit.
 - Object relationships
 - Multiple teams
 - Season Standings
-- Save and load data from files
