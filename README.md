@@ -17,6 +17,7 @@ A Java command-line application that simulates managing a basketball league. Use
 The program starts with two preloaded teams:
 - Warriors
 - Lakers
+
 This is so the program's features can be tested immediately.
 
 # How it works
